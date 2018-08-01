@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" onkeypress="onlyDecimals(event)" onkeyup="clearInput(event)">
+
+
+    <script type="text/javascript">
+        function clearInput(evt) {
+            // remove special chars
+            const value = evt.target.value;
+            evt.target.value = value.replace(/[^0-9\.]/g, '');
+        }
+
+        function onlyDecimals(evt) {
+            // Just numbers from 0 to 9
+            if (((evt.charCode >= 48 && evt.charCode <= 57) || evt.charCode === 46)) {
+
+                // If charCode is 46(dot) and the input has a dot
+                // dont allow other dot
+                if (evt.charCode === 46 && !!~evt.target.value.indexOf('.')) {
+                    evt.preventDefault();
+                    return false;
+                }
+
+                return true;
+            } else {
+                evt.preventDefault();
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
